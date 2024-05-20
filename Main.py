@@ -10,7 +10,8 @@ El programa deberá incluir las siguientes características:
     • Comentarios explicativos: El código deberá estar comentado para explicar su
     funcionamiento en cada parte relevante.
 '''
-import os
+import os #Importar librería de S.O
+
 #Clase Tarea
 class Task:
     def __init__(self, name, done=False): #Inicializa una nueva tarea pasando el nombre por parámetro. 
@@ -58,6 +59,9 @@ class Task_List:
         except IndexError:
             print("La posición indicada no es válida!")
             clear()
+        except:
+            print("La posición indicada no es válida a través de la segunda exepción")
+            clear()
             
 #Función principal
 def main():
@@ -83,8 +87,12 @@ def main():
                 task_list.show_tasks()
                 try:
                     task_number = int(input("Nº: "))
-                    task_list.completed_task(task_number - 1)
-                    clear()
+                    if task_number > 0:
+                        task_list.completed_task(task_number - 1)
+                        clear()
+                    else:
+                        print("Debe introducir un número de la lista")
+                        press = input("\n\nPresione una tecla para continuar...")
                 except:
                     print("Introduzca un número dentro del rango!")
             elif choice == 3: #Mostrar todas las tareas
@@ -98,7 +106,11 @@ def main():
                 task_list.show_tasks()
                 try:
                     task_number = int(input("Nº: "))
-                    task_list.del_task(task_number - 1)
+                    if task_number > 0:
+                        task_list.del_task(task_number - 1)
+                    else:
+                        print("Debe introducir un número de la lista.")
+                        press = input("\n\nPresione una tecla para continuar...")
                 except:
                     print("Error al seleccionar la tarea")
                     continue
@@ -106,13 +118,15 @@ def main():
                 print("Hasta pronto!")
                 break
             else:
-                print("Introduzca un número valido!")
+                clear()
+                print("Introduzca un número de la lista!")
                 continue
         except:
+            clear()
             print("Introduzca un número de la lista!")
             continue
 
-
+#Ejecución del programa
 if __name__ == '__main__':
     clear = lambda: os.system('cls') #Método para limpiar la consola cada vez que se invoca. Se añade para hacer un programa más limpio
     main() #Ejecutamos el programa principal
