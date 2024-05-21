@@ -1,4 +1,6 @@
 '''
+***************************************************************ENUNCIADO**************************************************************************************
+
 Escribe un programa en Python utilizando Programación Orientada a Objetos que gestione una lista de tareas pendientes. El programa deberá permitir al usuario realizar las siguientes operaciones:
     • Agregar una nueva tarea: El programa deberá permitir al usuario agregar una nueva tareaa
     la lista de tareas pendientes.
@@ -9,8 +11,9 @@ El programa deberá incluir las siguientes características:
     • Manejo de excepciones: El programa deberá manejar excepciones en caso de que el usuario ingrese una opción no válida o una posición que no exista en la lista.
     • Comentarios explicativos: El código deberá estar comentado para explicar su
     funcionamiento en cada parte relevante.
+**************************************************************************************************************************************************************
 '''
-import os #Importar librería de S.O
+import os #Importar librería de S.O para aplicar método de limpiar terminal
 
 #Clase Tarea
 class Task:
@@ -46,6 +49,7 @@ class Task_List:
             print("La tarea: '",task.name, "' ha sido completada." )
         except IndexError: #Excepción si el índice introducido no es correcto
             print("La posición indicada no es válida")
+            press = input("\n\nPresione una tecla para continuar...") #Deja el mensaje en pantalla hasta pulsar una tecla
 
     def show_tasks(self): #Muestra la lista de tareas
         counter = 1 #Contador para escribir en la lista
@@ -61,11 +65,12 @@ class Task_List:
             print("La tarea: '", task.name, "', ha sido eliminada con éxito", sep="")
         except IndexError: #Excepción si la posición de la lista no es válida
             print("La posición indicada no es válida!")
+            press = input("\n\nPresione una tecla para continuar...") #Deja el mensaje en pantalla hasta pulsar una tecla
             clear() #Limpia la consola
 
 #Función para limpiar la consola
 def clear():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system('cls' if os.name == 'nt' else 'clear') #Definida para distintos sistemas operativos
 
 #Función principal
 def main():
@@ -85,6 +90,7 @@ def main():
                 name = input("Inserte la descripción de la tarea: ")
                 task_list.add_task(name)
                 clear()
+
             elif choice == 2: #Marcar tarea como completada
                 clear()
                 print("Elija una tarea de la lista para marcar como completada: ")
@@ -95,15 +101,17 @@ def main():
                         task_list.completed_task(task_number - 1) #Resta (1) ya que la posición de la lista comienza en (0)
                         clear()
                     else:
-                        print("Debe introducir un número de la lista")
+                        print("Debe introducir un número mayor que 0")
                         press = input("\n\nPresione una tecla para continuar...") #Deja el mensaje en pantalla hasta pulsar una tecla
                 except ValueError: #Excepción si el valor introducido es erróneo
                     print("Introduzca un número válido")
+
             elif choice == 3: #Mostrar todas las tareas
                 clear()
                 task_list.show_tasks()
                 press = input("\n\nPresione una tecla para continuar...") #Deja el mensaje en pantalla hasta pulsar una tecla
                 clear()
+
             elif choice == 4: #Eliminar tarea
                 clear()
                 print("Elija una tarea de la lista para eliminarla: ")
@@ -113,18 +121,21 @@ def main():
                     if task_number > 0: #Comprueba que el número introducido es válido
                         task_list.del_task(task_number - 1) #Resta (1) para compensar que las posiciones en lista comienzan en (0)
                     else:
-                        print("Debe introducir un número de la lista.")
+                        print("Debe introducir un número mayor que 0")
                         press = input("\n\nPresione una tecla para continuar...") #Deja el mensaje en pantalla hasta pulsar una tecla
                 except ValueError: #Excepción si el valor introducido no es correcto
                     print("Introduzca un número válido")
                     continue #Continua la siguiente ejecución del bucle
+
             elif choice == 5: #Salir del programa
                 print("Hasta pronto!")
                 break #Instrucción para salir del bucle
-            else:
+
+            else: #Opción si no se selecciona ninguna de las opciones programadas
                 clear()
                 print("Introduzca un número de la lista!")
                 continue #Si el valor introducido no es ninguno de la lista se vuelve a iniciar el bucle limpiando la consola previamente
+
         except: #Excepción si el valor introducido no es válido
             clear()
             print("Introduzca un número de la lista!")
@@ -132,5 +143,4 @@ def main():
 
 #Ejecución del programa
 if __name__ == '__main__':
-    #clear = lambda: os.system('cls') #Método para limpiar la consola cada vez que se invoca. Se añade para hacer un programa más limpio
-    main() #Ejecutamos el programa principal
+    main() #Ejecución del programa principal
