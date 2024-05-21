@@ -35,16 +35,16 @@ class Task_List:
         self.task_list = []
 
     def add_task(self, name): #Añade una nueva tarea a la lista
-        new_task = Task(name)
-        self.task_list.append(new_task)
+        new_task = Task(name) #Nombre de la tarea
+        self.task_list.append(new_task) #Añade la tarea a la lista
 
     def completed_task(self,pos): #Marca la tarea como completada.
         #El argumento es la posición de la tarea
         try:
-            task = self.task_list[pos]
-            task.done = True
-            print("La tarea '",task.name, "' ha sido completada." )
-        except IndexError:
+            task = self.task_list[pos] #Almacena en una variable el objeto "Task" de la lista
+            task.done = True #Marca el atributo "Completado" como True
+            print("La tarea: '",task.name, "' ha sido completada." )
+        except IndexError: #Excepción si el índice introducido no es correcto
             print("La posición indicada no es válida")
 
     def show_tasks(self): #Muestra la lista de tareas
@@ -56,12 +56,12 @@ class Task_List:
     
     def del_task(self, pos): #Elimina la tarea en la posición pasada por argumento
         try:
-            task = self.task_list[pos]
-            deleted_task = self.task_list.pop(pos)
+            task = self.task_list[pos] #Almacena en la variable el objeto tipo "Task" de la lista
+            deleted_task = self.task_list.pop(pos) #Elimina el elemento de la lista dada la posición
             print("La tarea", task.name, " ha sido eliminada con éxito")
-        except IndexError:
+        except IndexError: #Excepción si la posición de la lista no es válida
             print("La posición indicada no es válida!")
-            clear()
+            clear() #Limpia la consola
 
 #Función para limpiar la consola
 def clear():
@@ -71,7 +71,7 @@ def clear():
 def main():
     task_list = Task_List() #Instancia para crear una nueva lista al iniciar el programa
     while True: #Bucle para mantenerse dentro del programa
-        try:
+        try: #Selección de opciones
             print("\n--- Gestión de Tareas ---")
             print("1. Agregar tarea")
             print("2. Marcar tarea como completada")
@@ -91,41 +91,41 @@ def main():
                 task_list.show_tasks()
                 try:
                     task_number = int(input("Nº: "))
-                    if task_number > 0:
-                        task_list.completed_task(task_number - 1)
+                    if task_number > 0: #Verifica que el número introducido es correcto
+                        task_list.completed_task(task_number - 1) #Resta (1) ya que la posición de la lista comienza en (0)
                         clear()
                     else:
                         print("Debe introducir un número de la lista")
-                        press = input("\n\nPresione una tecla para continuar...")
-                except ValueError:
+                        press = input("\n\nPresione una tecla para continuar...") #Deja el mensaje en pantalla hasta pulsar una tecla
+                except ValueError: #Excepción si el valor introducido es erróneo
                     print("Introduzca un número válido")
             elif choice == 3: #Mostrar todas las tareas
                 clear()
                 task_list.show_tasks()
-                press = input("\n\nPresione una tecla para continuar...")
+                press = input("\n\nPresione una tecla para continuar...") #Deja el mensaje en pantalla hasta pulsar una tecla
                 clear()
             elif choice == 4: #Eliminar tarea
                 clear()
                 print("Elija una tarea de la lista para eliminarla: ")
-                task_list.show_tasks()
+                task_list.show_tasks() #Muestra la lista de tareas para elegir una de ellas
                 try:
                     task_number = int(input("Nº: "))
-                    if task_number > 0:
-                        task_list.del_task(task_number - 1)
+                    if task_number > 0: #Comprueba que el número introducido es válido
+                        task_list.del_task(task_number - 1) #Resta (1) para compensar que las posiciones en lista comienzan en (0)
                     else:
                         print("Debe introducir un número de la lista.")
-                        press = input("\n\nPresione una tecla para continuar...")
-                except ValueError:
+                        press = input("\n\nPresione una tecla para continuar...") #Deja el mensaje en pantalla hasta pulsar una tecla
+                except ValueError: #Excepción si el valor introducido no es correcto
                     print("Introduzca un número válido")
-                    continue
+                    continue #Continua la siguiente ejecución del bucle
             elif choice == 5: #Salir del programa
                 print("Hasta pronto!")
-                break
+                break #Instrucción para salir del bucle
             else:
                 clear()
                 print("Introduzca un número de la lista!")
-                continue
-        except:
+                continue #Si el valor introducido no es ninguno de la lista se vuelve a iniciar el bucle limpiando la consola previamente
+        except: #Excepción si el valor introducido no es válido
             clear()
             print("Introduzca un número de la lista!")
             continue
