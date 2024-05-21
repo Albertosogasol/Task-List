@@ -2,7 +2,7 @@
 Escribe un programa en Python utilizando Programación Orientada a Objetos que gestione una lista de tareas pendientes. El programa deberá permitir al usuario realizar las siguientes operaciones:
     • Agregar una nueva tarea: El programa deberá permitir al usuario agregar una nueva tareaa
     la lista de tareas pendientes.
-    • Marcar una tarea como complet1ada: El programa deberá permitir al usuario marcar una tarea como completada, dada su posición en la lista.
+    • Marcar una tarea como completada: El programa deberá permitir al usuario marcar una tarea como completada, dada su posición en la lista.
     • Mostrar todas las tareas: El programa deberá imprimir en pantalla todas las tareas pendientes, numeradas y mostrando su estado (completada o pendiente).
     • Eliminar una tarea: El programa deberá permitir al usuario eliminar una tarea de la lista, dada su posición.
 El programa deberá incluir las siguientes características:
@@ -24,7 +24,7 @@ class Task:
     
     def get_status(self): #Devuelve le estado de la tarea
         if self.done == True:
-            return "Finalizada"
+            return "Completada"
         else:
             return "Pendiente"
 
