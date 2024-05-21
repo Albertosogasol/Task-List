@@ -58,7 +58,7 @@ class Task_List:
         try:
             task = self.task_list[pos] #Almacena en la variable el objeto tipo "Task" de la lista
             deleted_task = self.task_list.pop(pos) #Elimina el elemento de la lista dada la posición
-            print("La tarea: ", task.name, ", ha sido eliminada con éxito", sep="")
+            print("La tarea: '", task.name, "', ha sido eliminada con éxito", sep="")
         except IndexError: #Excepción si la posición de la lista no es válida
             print("La posición indicada no es válida!")
             clear() #Limpia la consola
