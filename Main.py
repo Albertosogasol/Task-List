@@ -1,5 +1,5 @@
 '''
-***************************************************************ENUNCIADO**************************************************************************************
+***************************************************************ENUNCIADO***************************************************************************************
 
 Escribe un programa en Python utilizando Programación Orientada a Objetos que gestione una lista de tareas pendientes. El programa deberá permitir al usuario realizar las siguientes operaciones:
     • Agregar una nueva tarea: El programa deberá permitir al usuario agregar una nueva tareaa
@@ -11,7 +11,7 @@ El programa deberá incluir las siguientes características:
     • Manejo de excepciones: El programa deberá manejar excepciones en caso de que el usuario ingrese una opción no válida o una posición que no exista en la lista.
     • Comentarios explicativos: El código deberá estar comentado para explicar su
     funcionamiento en cada parte relevante.
-**************************************************************************************************************************************************************
+***************************************************************************************************************************************************************
 '''
 import os #Importar librería de S.O para aplicar método de limpiar terminal
 
