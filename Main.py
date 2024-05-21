@@ -40,9 +40,12 @@ class Task_List:
 
     def completed_task(self,pos): #Marca la tarea como completada.
         #El argumento es la posición de la tarea
-        task = self.task_list[pos]
-        task.done = True
-        print("La tarea '",task.name, "' ha sido completada." )
+        try:
+            task = self.task_list[pos]
+            task.done = True
+            print("La tarea '",task.name, "' ha sido completada." )
+        except IndexError:
+            print("La posición indicada no es válida")
 
     def show_tasks(self): #Muestra la lista de tareas
         counter = 1 #Contador para escribir en la lista
@@ -59,10 +62,11 @@ class Task_List:
         except IndexError:
             print("La posición indicada no es válida!")
             clear()
-        except:
-            print("La posición indicada no es válida a través de la segunda exepción")
-            clear()
-            
+
+#Función para limpiar la consola
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 #Función principal
 def main():
     task_list = Task_List() #Instancia para crear una nueva lista al iniciar el programa
@@ -93,8 +97,8 @@ def main():
                     else:
                         print("Debe introducir un número de la lista")
                         press = input("\n\nPresione una tecla para continuar...")
-                except:
-                    print("Introduzca un número dentro del rango!")
+                except ValueError:
+                    print("Introduzca un número válido")
             elif choice == 3: #Mostrar todas las tareas
                 clear()
                 task_list.show_tasks()
@@ -111,8 +115,8 @@ def main():
                     else:
                         print("Debe introducir un número de la lista.")
                         press = input("\n\nPresione una tecla para continuar...")
-                except:
-                    print("Error al seleccionar la tarea")
+                except ValueError:
+                    print("Introduzca un número válido")
                     continue
             elif choice == 5: #Salir del programa
                 print("Hasta pronto!")
@@ -128,5 +132,5 @@ def main():
 
 #Ejecución del programa
 if __name__ == '__main__':
-    clear = lambda: os.system('cls') #Método para limpiar la consola cada vez que se invoca. Se añade para hacer un programa más limpio
+    #clear = lambda: os.system('cls') #Método para limpiar la consola cada vez que se invoca. Se añade para hacer un programa más limpio
     main() #Ejecutamos el programa principal
